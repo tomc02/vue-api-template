@@ -7,7 +7,7 @@ import "@/assets/tailwind.css";
 
 // Set base URL for API
 axios.defaults.baseURL =
-  import.meta.env.VITE_API_URL || "http://localhost:3001";
+  import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 const app = createApp(App);
 

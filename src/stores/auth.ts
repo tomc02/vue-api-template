@@ -112,7 +112,7 @@ export const useAuthStore = defineStore("auth", () => {
       isLoading.value = true;
       error.value = null;
       const response =
-        await axios.get<Array<{ user: User; token: string }>>("/users/list");
+        await axios.get<Array<User>>("/users/list");
       console.log(response.data);
       return response.data;
     } catch (err) {

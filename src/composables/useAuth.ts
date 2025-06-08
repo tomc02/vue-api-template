@@ -1,62 +1,38 @@
-import { ref } from "vue";
-import { useStore } from "vuex";
+import { computed } from "vue";
 import { useRouter } from "vue-router";
-
-interface Credentials {
-  email: string;
-  password: string;
-  [key: string]: any;
-}
-
-interface UserData {
-  name?: string;
-  email?: string;
-  password?: string;
-  [key: string]: any;
-}
+import { useAuthStore } from "@/stores/auth"; // Adjust the path as needed
+import type { LoginData, RegisterData, UpdateProfileData } from "@/types/auth";
 
 export default function useAuth() {
-  const store = useStore();
+  const authStore = useAuthStore();
   const router = useRouter();
 
-  const error = ref<string | null>(null);
-  const isLoading = ref<boolean>(false);
+  const error = computed(() => authStore.error);
+  const isLoading = computed(() => authStore.isLoading);
 
-  const login = async (credentials: Credentials): Promise<void> => {
+  const login = async (credentials: LoginData): Promise<void> => {
     try {
-      isLoading.value = true;
-      error.value = null;
-      await store.dispatch("login", credentials);
+      await authStore.login(credentials);
       router.push("/profile");
     } catch (err: any) {
-      error.value = err?.message || "Login failed";
-    } finally {
-      isLoading.value = false;
+      // error is handled in store
     }
   };
 
-  const register = async (userData: UserData): Promise<void> => {
+  const register = async (userData: RegisterData): Promise<void> => {
     try {
-      isLoading.value = true;
-      error.value = null;
-      await store.dispatch("register", userData);
+      await authStore.register(userData);
       router.push("/profile");
     } catch (err: any) {
-      error.value = err?.message || "Registration failed";
-    } finally {
-      isLoading.value = false;
+      // error is handled in store
     }
   };
 
-  const updateProfile = async (userData: UserData): Promise<void> => {
+  const updateProfile = async (userData: UpdateProfileData): Promise<void> => {
     try {
-      isLoading.value = true;
-      error.value = null;
-      await store.dispatch("updateProfile", userData);
+      await authStore.updateProfile(userData);
     } catch (err: any) {
-      error.value = err?.message || "Update failed";
-    } finally {
-      isLoading.value = false;
+      // error is handled in store
     }
   };
 

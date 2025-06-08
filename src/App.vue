@@ -2,7 +2,7 @@
 import { RouterView } from "vue-router";
 import Navbar from "@/components/Navbar.vue";
 import { useAuthStore } from "@/stores/auth";
-import { onMounted, ref, watchEffect } from "vue";
+import { onMounted, ref } from "vue";
 
 const authStore = useAuthStore();
 const isDark = ref(localStorage.getItem("theme") === "dark");
