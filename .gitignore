@@ -25,3 +25,4 @@ bun.lock
 *.sln
 *.sw?
 .env
+env-build
