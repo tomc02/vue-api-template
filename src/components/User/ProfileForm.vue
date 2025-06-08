@@ -12,7 +12,7 @@ const formData = ref<UpdateProfileData>({
 });
 
 onMounted(async () => {
-  await authStore.fetchProfile();
+  !authStore.user && await authStore.fetchProfile();
   if (authStore.user) {
     formData.value = {
       firstName: authStore.user.firstName,
@@ -57,7 +57,13 @@ const handleSubmit = async () => {
       </p>
     </div>
 
-    <form @submit.prevent="handleSubmit" class="space-y-6">
+    <div v-if="authStore.isLoading" class="flex justify-center py-8">
+      <div
+        class="border-4 border-indigo-500 border-t-transparent rounded-full w-8 h-8 animate-spin"
+      ></div>
+    </div>
+
+    <form v-else @submit.prevent="handleSubmit" class="space-y-6">
       <div>
         <label
           for="firstName"
