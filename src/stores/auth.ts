@@ -15,6 +15,7 @@ export const useAuthStore = defineStore("auth", () => {
   const isAuthenticated = ref<boolean>(!!token.value);
   const isLoading = ref<boolean>(false);
   const error = ref<string | null>(null);
+  const success = ref<string | null>(null);
 
   // Set auth header for axios
   if (token.value) {
@@ -99,6 +100,7 @@ export const useAuthStore = defineStore("auth", () => {
         profileData,
       );
       user.value = response.data.user;
+      success.value = "Profile updated successfully";
     } catch (err) {
       error.value = "Failed to update profile";
       throw err;
@@ -129,6 +131,7 @@ export const useAuthStore = defineStore("auth", () => {
     isAuthenticated,
     isLoading,
     error,
+    success,
     login,
     register,
     logout,

@@ -25,7 +25,7 @@ const handleSubmit = async () => {
 
 <template>
   <div
-    class="bg-white dark:bg-gray-800 shadow-md mx-auto p-8 rounded-lg max-w-md"
+    class="bg-white dark:bg-gray-800 shadow-md mx-auto p-8 rounded-lg w-full max-w-md"
   >
     <h2 class="mb-6 font-bold text-gray-800 dark:text-gray-100 text-2xl">
       Create a new account
@@ -53,7 +53,7 @@ const handleSubmit = async () => {
           name="email"
           type="email"
           required
-          class="block bg-white dark:bg-gray-900 shadow-sm mt-1 border-gray-300 focus:border-indigo-500 dark:border-gray-600 rounded-md focus:ring-indigo-500 w-full text-gray-900 dark:text-gray-100 sm:text-sm"
+          class="block bg-white dark:bg-gray-900 shadow-sm mt-1 p-2 border-gray-300 focus:border-indigo-500 dark:border-gray-600 rounded-md focus:ring-indigo-500 w-full text-gray-900 dark:text-gray-100 sm:text-sm"
         />
       </div>
 
@@ -70,7 +70,7 @@ const handleSubmit = async () => {
           type="text"
           required
           minlength="3"
-          class="block bg-white dark:bg-gray-900 shadow-sm mt-1 border-gray-300 focus:border-indigo-500 dark:border-gray-600 rounded-md focus:ring-indigo-500 w-full text-gray-900 dark:text-gray-100 sm:text-sm"
+          class="block bg-white dark:bg-gray-900 shadow-sm mt-1 p-2 border-gray-300 focus:border-indigo-500 dark:border-gray-600 rounded-md focus:ring-indigo-500 w-full text-gray-900 dark:text-gray-100 sm:text-sm"
         />
       </div>
 
@@ -87,7 +87,7 @@ const handleSubmit = async () => {
           type="password"
           required
           minlength="6"
-          class="block bg-white dark:bg-gray-900 shadow-sm mt-1 border-gray-300 focus:border-indigo-500 dark:border-gray-600 rounded-md focus:ring-indigo-500 w-full text-gray-900 dark:text-gray-100 sm:text-sm"
+          class="block bg-white dark:bg-gray-900 shadow-sm mt-1 p-2 border-gray-300 focus:border-indigo-500 dark:border-gray-600 rounded-md focus:ring-indigo-500 w-full text-gray-900 dark:text-gray-100 sm:text-sm"
         />
       </div>
 

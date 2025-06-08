@@ -49,11 +49,11 @@ const handleSubmit = async () => {
     </div>
 
     <div
-      v-if="authStore.user"
+      v-if="authStore.success"
       class="bg-green-50 dark:bg-green-200/20 mb-6 p-4 rounded-md"
     >
       <p class="text-green-800 dark:text-green-400 text-sm">
-        Profile updated successfully!
+        {{ authStore.success }}
       </p>
     </div>
 

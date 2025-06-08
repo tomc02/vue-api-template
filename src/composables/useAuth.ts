@@ -9,6 +9,7 @@ export default function useAuth() {
 
   const error = computed(() => authStore.error);
   const isLoading = computed(() => authStore.isLoading);
+  const success = computed(() => authStore.success);
 
   const login = async (credentials: LoginData): Promise<void> => {
     try {
@@ -38,6 +39,7 @@ export default function useAuth() {
 
   return {
     error,
+    success,
     isLoading,
     login,
     register,
