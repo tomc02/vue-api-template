@@ -3,9 +3,13 @@ import { ref, onMounted } from "vue";
 import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "vue-router";
 import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 
 const authStore = useAuthStore();
 const router = useRouter();
+const route = useRoute();
+const isActive = (path: string) => computed(() => route.path === path);
 const mobileMenuOpen = ref(false);
 const isDark = ref(false);
 
@@ -48,21 +52,41 @@ onMounted(() => {
           <div class="hidden sm:flex sm:space-x-8 sm:ml-6">
             <router-link
               to="/"
-              class="inline-flex items-center px-1 pt-1 border-indigo-500 border-b-2 font-medium text-gray-900 dark:text-white text-sm"
-              >Home</router-link
+              :class="[
+                'inline-flex items-center px-1 pt-1 border-b-2 font-medium text-sm',
+                isActive('/').value
+                  ? 'border-indigo-500 text-gray-900 dark:text-white'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-white dark:text-gray-300',
+              ]"
             >
+              Home
+            </router-link>
+
             <router-link
               v-if="authStore.isAuthenticated"
               to="/profile"
-              class="inline-flex items-center px-1 pt-1 hover:border-gray-300 border-transparent border-b-2 font-medium text-gray-500 hover:text-gray-700 dark:hover:text-white dark:text-gray-300 text-sm"
-              >Profile</router-link
+              :class="[
+                'inline-flex items-center px-1 pt-1 border-b-2 font-medium text-sm',
+                isActive('/profile').value
+                  ? 'border-indigo-500 text-gray-900 dark:text-white'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-white dark:text-gray-300',
+              ]"
             >
+              Profile
+            </router-link>
+
             <router-link
               v-if="authStore.isAuthenticated"
               to="/users"
-              class="inline-flex items-center px-1 pt-1 hover:border-gray-300 border-transparent border-b-2 font-medium text-gray-500 hover:text-gray-700 dark:hover:text-white dark:text-gray-300 text-sm"
-              >Users</router-link
+              :class="[
+                'inline-flex items-center px-1 pt-1 border-b-2 font-medium text-sm',
+                isActive('/users').value
+                  ? 'border-indigo-500 text-gray-900 dark:text-white'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-white dark:text-gray-300',
+              ]"
             >
+              Users
+            </router-link>
           </div>
         </div>
 
@@ -130,19 +154,35 @@ onMounted(() => {
       <div class="space-y-1 pt-2 pb-3">
         <router-link
           to="/"
-          class="block bg-indigo-50 dark:bg-indigo-950 py-2 pr-4 pl-3 border-indigo-500 border-l-4 font-medium text-indigo-700 dark:text-indigo-400 text-base"
-          >Home</router-link
+          :class="[
+            'block py-2 pr-4 pl-3 border-l-4 font-medium text-base',
+            isActive('/').value
+              ? 'bg-indigo-50 dark:bg-indigo-950 border-indigo-500 text-indigo-700 dark:text-indigo-400'
+              : 'hover:bg-gray-50 dark:hover:bg-gray-800 border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-white dark:text-gray-300',
+          ]"
         >
+          Home
+        </router-link>
         <router-link
           v-if="authStore.isAuthenticated"
           to="/profile"
-          class="block hover:bg-gray-50 dark:hover:bg-gray-800 py-2 pr-4 pl-3 hover:border-gray-300 border-transparent border-l-4 font-medium text-gray-500 hover:text-gray-700 dark:hover:text-white dark:text-gray-300 text-base"
+          :class="[
+            'block py-2 pr-4 pl-3 border-l-4 font-medium text-base',
+            isActive('/profile').value
+              ? 'bg-indigo-50 dark:bg-indigo-950 border-indigo-500 text-indigo-700 dark:text-indigo-400'
+              : 'hover:bg-gray-50 dark:hover:bg-gray-800 border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-white dark:text-gray-300',
+          ]"
           >Profile</router-link
         >
         <router-link
           v-if="authStore.isAuthenticated"
           to="/users"
-          class="block hover:bg-gray-50 dark:hover:bg-gray-800 py-2 pr-4 pl-3 hover:border-gray-300 border-transparent border-l-4 font-medium text-gray-500 hover:text-gray-700 dark:hover:text-white dark:text-gray-300 text-base"
+          :class="[
+            'block py-2 pr-4 pl-3 border-l-4 font-medium text-base',
+            isActive('/users').value
+              ? 'bg-indigo-50 dark:bg-indigo-950 border-indigo-500 text-indigo-700 dark:text-indigo-400'
+              : 'hover:bg-gray-50 dark:hover:bg-gray-800 border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-white dark:text-gray-300',
+          ]"
           >Users</router-link
         >
       </div>

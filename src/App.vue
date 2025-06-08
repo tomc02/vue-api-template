@@ -13,7 +13,6 @@ onMounted(async () => {
     await authStore.fetchProfile();
   }
 });
-
 </script>
 
 <template>
